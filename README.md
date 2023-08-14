@@ -1,4 +1,22 @@
-# Teste de vaga fullstack *KRONOOS*
+# Teste de vaga fullstack _KRONOOS_
+
+## Rodando o projeto
+
+Para rodar o projeto tenha certeza de que as dependências foram devidamente instaladas, para instalar execute o comando a seguir.
+
+1. Instalando as dependências do projeto:
+
+   ```bash
+   npm install
+   ```
+
+para rodar o projeto execute o comando 'npm start'
+
+2. Rodando o projeto
+
+   ```bash
+   npm start
+   ```
 
 ## Manipulação de Dados de CSV e Conversão para Array
 
