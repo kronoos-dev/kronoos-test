@@ -1,0 +1,2 @@
+Para rodar basta usar o npm install para instalar as dependencias e rodar o seguinte comando:
+node src/index.js
