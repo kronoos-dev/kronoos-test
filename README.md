@@ -1,3 +1,7 @@
+# Comando para executar
+
+- npx ts-node index.tsx
+
 # Teste de vaga fullstack *KRONOOS*
 
 ## Manipulação de Dados de CSV e Conversão para Array
