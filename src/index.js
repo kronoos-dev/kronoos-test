@@ -27,7 +27,7 @@ const dataHandler = (data) => {
 const processCSVFile = (filePath) => {
 	const results = [];
 
-	createReadStream(filePath)
+  createReadStream(filePath)
   .pipe(csv())
   .on('data', (data) => {
     const convertData = dataHandler(data);
