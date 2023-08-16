@@ -19,7 +19,7 @@ fs.createReadStream('data.csv')
     data.correctInstallments = compareTotalValueWithInstallments(data)
 
     /*
-    Percebi que os campos para serem formatados possuiam o padrao de iniciarem o vl, sendo assim, decidi fazer uma regEx 
+    Percebi que os campos para serem formatados possuiam o padrao de iniciarem com o vl, sendo assim, decidi fazer uma regEx 
     para identificar os campos que precisavam ser alterados ao inves de manualmente setar um por um 
     */
     const Reg = /\b(vl)[a-zA-Z]*\b/
