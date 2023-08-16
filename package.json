@@ -1,0 +1,12 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kronoos-dev/kronoos-test.git",
+  "author": "Filipe <llyphy46@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cpf-cnpj-validator": "^1.0.3",
+    "csv-parser": "^3.0.0"
+  }
+}
