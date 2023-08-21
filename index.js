@@ -2,6 +2,7 @@
 const { validateCPFOrCNPJ } = require('./utils/cnpjCpfValidator');
 const { convertToDate } = require('./utils/convertToDate');
 const { formatCurrency } = require('./utils/formatCurrency');
+const { outputToJson } = require('./utils/outputToJson');
 const { readCSVFile } = require('./utils/readCSVFile');
 const { validatePresta } = require('./utils/validatePresta');
 
@@ -31,7 +32,7 @@ const processData = (data) => {
     return formattedItem;
   });
 
-  console.log(processedData);
+  outputToJson(processedData)
 };
 
 const filePath = './data.csv';
