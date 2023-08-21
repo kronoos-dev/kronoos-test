@@ -1,10 +1,23 @@
+const fs = require('fs');
+const csv = require('csv-parser');
+const { validateCPFOrCNPJ } = require('./modules/cnpjCpfValidator');
+const { convertToDate } = require('./modules/convertToDate');
+const { formatCurrency } = require('./modules/formatCurrency');
+const { outputToJson } = require('./modules/outputToJson');
+const { validatePresta } = require('./modules/validatePresta');
 
-const { validateCPFOrCNPJ } = require('./utils/cnpjCpfValidator');
-const { convertToDate } = require('./utils/convertToDate');
-const { formatCurrency } = require('./utils/formatCurrency');
-const { outputToJson } = require('./utils/outputToJson');
-const { readCSVFile } = require('./utils/readCSVFile');
-const { validatePresta } = require('./utils/validatePresta');
+const readCSVFile = (filePath, callback) => {
+  const data = [];
+
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on('data', (row) => {
+      data.push(row);
+    })
+    .on('end', () => {
+      callback(data);
+    });
+};
 
 const processData = (data) => {
   const processedData = data.map((item) => {
