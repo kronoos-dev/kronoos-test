@@ -9,7 +9,7 @@ const { parse } = require('csv-parse');
 export async function init() {
     const data = await getDataFromCsv();
 
-    fs.writeFileSync('./src/.temp/dataParsed.json', JSON.stringify(data), (err: any) => {
+    fs.writeFileSync('./src/dataParsed.json', JSON.stringify(data), (err: any) => {
         if (err) console.log(err);
     });
 };
