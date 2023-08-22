@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "test": "tsc && jest ./tests --runInBand",
+    "dev": "ts-node-dev --respawn --transpile-only src/main"
+  },
+  "dependencies": {
+    "@types/jest": "^29.5.3",
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security",
+    "jest": "^29.6.3",
+    "jest-mock-extended": "^3.0.5",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  }
+}
