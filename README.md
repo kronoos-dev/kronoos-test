@@ -25,3 +25,26 @@
 - Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
 
 Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+
+
+## Rodando o projeto localmente
+
+- Pré requisitos:
+  - Node.js(v18 ou superior)
+  - npm/yarn
+
+- Clone do projeto em:
+  - comando: git clone https://github.com/kronoos-dev/kronoos-test.git
+
+- Executar testes unitários:
+  - comando: npm run test
+
+- Executar o projeto em ambiente de desenvolvimento:
+  - comando: npm run dev
+
+- Criação da build 
+  - comando: npm run build
+
+- Executar o projeto em ambiente de produção:
+  - comando: npm run start
+
