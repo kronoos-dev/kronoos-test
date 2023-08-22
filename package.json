@@ -1,7 +1,7 @@
 {
   "name": "kronoos-test",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/controller/process.ts",
   "repository": "https://github.com/juliastefanoni/kronoos-test.git",
   "author": "juliastefanoni <juliastefanonidev@gmail.com>",
   "license": "MIT",
@@ -17,5 +17,10 @@
     "csv-parser": "^3.0.0",
     "fs": "^0.0.1-security",
     "intl": "^1.2.5"
+  },
+  "scripts": {
+    "start": "sucrase-node src/controller/process.ts",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:ci": "npm test -- --coverage"
   }
 }
