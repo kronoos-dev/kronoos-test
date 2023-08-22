@@ -115,13 +115,3 @@ const parseCSV = (filePath) => {
         })
     })
 }
-
-
-const main = async () => {
-    const filePath = './data.csv'
-    const csvData = await parseCSV(filePath);
-    console.log(csvData.length)
-    
-}
-
-main()
