@@ -2,6 +2,12 @@
 import fs from 'fs'
 import csv from 'csv-parser'
 
+
+export const brlFormatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+});
+
 export const CSVRead = (dataCallback, endCallback) => fs.createReadStream('data.csv')
     .pipe(csv())
     .on('data', dataCallback)
