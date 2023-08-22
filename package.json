@@ -1,0 +1,19 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/juliastefanoni/kronoos-test.git",
+  "author": "juliastefanoni <juliastefanonidev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "jest": "^29.6.3",
+    "sucrase": "^3.34.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security"
+  }
+}
