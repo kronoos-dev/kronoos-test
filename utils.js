@@ -13,40 +13,39 @@ export const CSVRead = (dataCallback, endCallback) => fs.createReadStream('data.
     .on('data', dataCallback)
     .on('end', endCallback);
 
-
-export const validatePrestationCalculation = (vlTotal, qtPrestacoes, vlPresta) => ((vlTotal / qtPrestacoes) === vlPresta)
+export const validatePrestationCalculation = (vlTotal, qtPrestacoes) => ((vlTotal / qtPrestacoes))
 
 export function convertToDate(yyyymmdd) {
     const year = yyyymmdd.slice(0, 4);
-    const month = yyyymmdd.slice(4, 6) - 1; // Months are zero-indexed
+    const month = yyyymmdd.slice(4, 6) - 1;
     const day = yyyymmdd.slice(6, 8);
     return new Date(year, month, day);
 }
 
 export function validNrCpfCnpj(value) {
 
-    const isValidCpf = validateCPF(value)
-    const isValidCnpj = validateCNPJ(value)
-
+    const isValidCpf = validateCPF(value),
+        isValidCnpj = validateCNPJ(value)
 
     return {
         isValidCpf,
         isValidCnpj
     }
+}
 
-
+export function isValidDate(dateString) {
+    const dateObject = new Date(dateString);
+    return !isNaN(dateObject) && dateObject.toISOString() === dateString;
 }
 
 
-
 function validateCPF(cpf) {
-    cpf = cpf.replace(/[^\d]/g, ''); // Remove characters that are not digits
+    cpf = cpf.replace(/[^\d]/g, '');  
 
     if (cpf.length !== 11) {
         return false;
     }
-
-    // Check for common invalid CPFs
+ 
     if (/^(\d)\1{10}$/.test(cpf)) {
         return false;
     }
@@ -89,13 +88,12 @@ function validateCPF(cpf) {
 
 
 function validateCNPJ(cnpj) {
-    cnpj = cnpj.replace(/[^\d]/g, ''); // Remove characters that are not digits
+    cnpj = cnpj.replace(/[^\d]/g, ''); 
 
     if (cnpj.length !== 14) {
         return false;
-    }
-
-    // Check for common invalid CNPJs
+    } 
+    
     if (/^(\d)\1{13}$/.test(cnpj)) {
         return false;
     }
