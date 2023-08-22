@@ -1,4 +1,4 @@
-import { DateConverter } from "../src/helpers/dateConverter"
+import { DateConverter } from "../../src/helpers/dateConverter"
 
 const makeSut = (): any => {
   const dateConverter = new DateConverter()

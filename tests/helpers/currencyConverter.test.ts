@@ -1,4 +1,4 @@
-import { CurrencyConverter } from "../src/helpers/currencyConverter"
+import { CurrencyConverter } from "../../src/helpers/currencyConverter"
 
 const makeSut = (): any => {
   const currencyConverter = new CurrencyConverter()

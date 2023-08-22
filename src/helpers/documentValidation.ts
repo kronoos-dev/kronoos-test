@@ -14,10 +14,6 @@ export class DocumentValidation {
   }
 
   private cpfValidation(value: string) {
-    if (value.length !== 11 || /^(\d)\1{10}$/.test(value)) {
-      return false;
-    }
-
     let sum = 0;
     for (let i = 0; i < 9; i++) {
       sum += parseInt(value.charAt(i)) * (10 - i);

@@ -1,4 +1,4 @@
-import { DocumentValidation } from "../src/helpers/documentValidation"
+import { DocumentValidation } from "../../src/helpers/documentValidation"
 
 const makeSut = (): any => {
   const documentValidation = new DocumentValidation()

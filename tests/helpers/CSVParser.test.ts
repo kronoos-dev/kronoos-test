@@ -1,4 +1,4 @@
-import { CSVParser } from "../src/helpers/CSVParser"
+import { CSVParser } from "../../src/helpers/CSVParser"
 
 const makeSut = (): any => {
   const csvParser = new CSVParser()

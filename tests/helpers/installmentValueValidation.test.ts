@@ -1,4 +1,4 @@
-import { InstallmentValueValidation } from "../src/helpers/installmentValueValidation"
+import { InstallmentValueValidation } from "../../src/helpers/installmentValueValidation"
 
 const makeSut = (): any => {
   const installmentValueValidation = new InstallmentValueValidation()
@@ -15,7 +15,7 @@ describe('Installment Validation', () => {
 
     const response = await installmentValueValidation.validate(450, 5, 90)
 
-    expect(response).toBe(90)
+    expect(response).toBe("R$90,00")
   })
 
   test('Should returns correct installment value if value is incorrect', async () => {
@@ -23,6 +23,6 @@ describe('Installment Validation', () => {
 
     const response = await installmentValueValidation.validate(450, 5, 70)
 
-    expect(response).toBe(90)
+    expect(response).toBe("R$90,00")
   })
 })
