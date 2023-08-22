@@ -13,7 +13,6 @@ export function processCSVFile(filePath) {
       .on("end", () => {
         console.log("CSV file successfully processed.");
         resolve(dataArray);
-        console.log(dataArray);
       })
       .on("error", (error) => {
         console.error("Error processing CSV file:", error);
