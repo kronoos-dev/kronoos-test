@@ -3,11 +3,11 @@ import {
     it
 } from 'node:test'
 import assert from 'node:assert'
-import { CSVRead, validNrCpfCnpj } from "../utils.js"
-import { transformData } from "../transformData.js"
- 
+import { CSVRead, validNrCpfCnpj, validatePrestationCalculation, brlFormatter, isValidDate } from "../utils.js"
+import { transformData } from "../transform.js"
+
 describe('TransformData', () => {
- 
+
     it('should verify R$', async () => {
         const results = [];
         await CSVRead(
@@ -22,10 +22,9 @@ describe('TransformData', () => {
         )
     })
 
-
     it('should verify CPF and CNPJ', async () => {
-        const validCpfMock = validNrCpfCnpj(`85581411000`)
-        const validCnpjMock = validNrCpfCnpj(`26527051000160`)
+        const validCpfMock = validNrCpfCnpj(`85581411000`),
+            validCnpjMock = validNrCpfCnpj(`26527051000160`)
 
         assert.strictEqual(validCpfMock.isValidCpf, true)
         assert.strictEqual(validCnpjMock.isValidCnpj, true)
@@ -36,16 +35,25 @@ describe('TransformData', () => {
         await CSVRead(
             (data) => results.push(data),
             () => {
-                const [{ vlPresta, vlPrestaConsistentes }] = transformData(results);
- 
-                assert.equal(vlPrestaConsistentes, false)
-
-
+                const [{ vlTotalOrigin: vlTotal, qtPrestacoes, vlPrestationCalculation }] = transformData(results);
+                const prestationCalculation = validatePrestationCalculation(vlTotal, qtPrestacoes)
+                assert.strictEqual(vlPrestationCalculation, brlFormatter.format(prestationCalculation))
             }
         )
     })
 
+    it('should verify date format', async () => {
+        const results = [];
+        await CSVRead(
+            (data) => results.push(data),
+            () => {
+                const [{ dtContrato, dtVctPre }] = transformData(results);
 
+                assert.equal(isValidDate(dtContrato.toISOString()), true)
+                assert.equal(isValidDate(dtVctPre.toISOString()), true)
 
+            }
+        )
+    })
 
 })
