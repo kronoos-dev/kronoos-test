@@ -1,5 +1,11 @@
 # Teste de vaga fullstack *KRONOOS*
 
+## Como executar o projeto
+
+- Clone o repositório
+- Execute o comando `pnpm install` para instalar as dependências
+- Execute o comando `pnpm dev` para iniciar o servidor
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.
