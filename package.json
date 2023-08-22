@@ -1,0 +1,20 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "## Manipulação de Dados de CSV e Conversão para Array",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test:dev": "node --watch --test test/",
+    "test": "node --test test/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security",
+    "intl": "^1.2.5"
+  }
+}
