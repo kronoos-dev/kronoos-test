@@ -3,10 +3,10 @@ import { validateCpfCnpj } from "../src/validationCpfCnpj.js";
 describe("validateAndFilterCurrencyData", () => {
   it("filters out rows with invalid CPF/CNPJ", () => {
     const testData = [
-      { nrCpfCnpj: "123.456.789-09" }, // Valid CPF
-      { nrCpfCnpj: "12.345.678/0001-90" }, // Valid CNPJ
-      { nrCpfCnpj: "12.345.678/0001-00" }, // Invalid CNPJ
-      { nrCpfCnpj: "abc" }, // Invalid format
+      { nrCpfCnpj: "123.456.789-09" },
+      { nrCpfCnpj: "12.345.678/0001-90" },
+      { nrCpfCnpj: "12.345.678/0001-00" },
+      { nrCpfCnpj: "abc" },
     ];
 
     const validatedData = validateCpfCnpj(testData);
