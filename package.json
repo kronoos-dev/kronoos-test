@@ -1,0 +1,27 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "kronoos node.js developer test",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kronoos-dev/kronoos-test.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "type": "module",
+  "author": "Prezotto R.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kronoos-dev/kronoos-test/issues"
+  },
+  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "intl": "^1.2.5"
+  }
+}
