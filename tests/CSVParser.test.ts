@@ -21,7 +21,6 @@ describe('CSV Parser', () => {
 
   test('Should convert sheet to data array', async () => {
     const { csvParser } = makeSut()
-    const csvParserSpy = jest.spyOn(csvParser, 'convert')
 
     const response = await csvParser.convert("./data.csv")
 

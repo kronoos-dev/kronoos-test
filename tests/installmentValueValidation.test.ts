@@ -8,7 +8,7 @@ const makeSut = (): any => {
   }
 }
 
-describe('Document Validation', () => {
+describe('Installment Validation', () => {
 
   test('Should returns the same installment if value is correct', async () => {
     const { installmentValueValidation } = makeSut()
