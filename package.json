@@ -1,0 +1,26 @@
+{
+  "name": "kronoos-test",
+  "description": "## Manipulação de Dados de CSV e Conversão para Array",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx vitest",
+    "dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cpf-cnpj-validator": "^1.0.3",
+    "csv-parser": "^3.0.0",
+    "date-fns": "^2.30.0",
+    "fs": "^0.0.1-security",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.1.0",
+    "eslint": "^8.47.0",
+    "tsx": "^3.12.7",
+    "vitest": "^0.34.2"
+  }
+}
