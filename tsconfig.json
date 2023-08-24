@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",    // Pode ser ES5, ES6, ES2017, etc., dependendo de sua necessidade
+    "module": "CommonJS",  // CommonJS é comum para Node.js
+    "outDir": "./dist",    // Diretório onde os arquivos JavaScript serão gerados após a compilação
+    "strict": true,        // Habilita verificações de tipo estritas
+    "esModuleInterop": true, // Permite interoperabilidade entre módulos ES6 e CommonJS
+    "skipLibCheck": true,  // Pode ser configurado conforme necessário
+    "forceConsistentCasingInFileNames": true, // Para garantir consistência entre maiúsculas e minúsculas em nomes de arquivo
+    "moduleResolution": "node", // Resolução de módulo para ambiente Node.js
+    "resolveJsonModule": true,  // Permite a importação de arquivos JSON
+    "declaration": true, // Gera arquivos de declaração (.d.ts)
+    "rootDir": "./src"   // Diretório onde estão os arquivos de origem TypeScript
+  },
+  "include": [
+    "src/**/*.ts" // Inclui todos os arquivos TypeScript na pasta src e suas subpastas
+, "src/services/dataService.ts"  ],
+  "exclude": [
+    "node_modules", // Exclui a pasta node_modules
+    "dist"          // Exclui a pasta dist (onde os arquivos JavaScript serão gerados)
+  ]
+}

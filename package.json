@@ -1,0 +1,33 @@
+{
+    "name": "alisson-project",
+    "version": "1.0.0",
+    "description": "Projeto kronoos",
+    "main": "dist/main.js",
+    "scripts": {
+        "start": "node dist/main.js",
+        "build": "tsc",
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "Alisson Seiji Aoki",
+    "license": "MIT",
+    "dependencies": {
+        "cpf-cnpj-validator": "^1.0.3",
+        "csv-parser": "^3.0.0",
+        "intl": "^1.2.5",
+        "intl-messageformat": "^10.5.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.10",
+        "@babel/preset-env": "^7.22.10",
+        "@babel/preset-typescript": "^7.22.5",
+        "@babel/register": "^7.22.5",
+        "@types/intl": "^1.2.0",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^16.0.2",
+        "babel-jest": "^29.6.3",
+        "jest": "^27.0.6",
+        "ts-jest": "^27.0.4",
+        "typescript": "^4.9.5"
+    }
+}

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: meu-projeto
+    ports:
+      - "3000:3000"  # Mapeie a porta do contêiner para a porta do host, se necessário
+    volumes:
+      - ./src:/app/src  # Mapeie o diretório de origem local para o diretório de origem do contêiner
+    command: ["npm", "start"]  # O comando a ser executado ao iniciar o contêiner
