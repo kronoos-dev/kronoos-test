@@ -1,11 +1,14 @@
 class InstallmentValue {
-    constructor(installmentValue, calculateInstallmentValue) {
-        this.InstallmentValue = parseFloat(installmentValue);
-        this.calculateInstallmentValue = parseFloat(calculateInstallmentValue);
+    constructor(installmentValue, calculatedInstallmentValue) {
+        this.installmentValue = parseFloat(installmentValue);
+        this.calculatedInstallmentValue = parseFloat(
+            calculatedInstallmentValue
+        );
     }
 
     isValid() {
-        if (this.installmentValue !== this.calculateInstallmentValue) {
+        console.log(this.installmentValue, this.calculatedInstallmentValue);
+        if (this.installmentValue !== this.calculatedInstallmentValue) {
             return false;
         }
         return true;
