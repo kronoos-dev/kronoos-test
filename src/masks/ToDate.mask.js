@@ -23,7 +23,7 @@ class ToDate {
 
     init() {
         if (!new DateValidator(this.value).isValid()) {
-            return this.value;
+            return false;
         }
         this.setYear();
         this.setMonth();
@@ -33,6 +33,9 @@ class ToDate {
     }
 
     transform() {
+        if (!this.date) {
+            return this.value;
+        }
         return Intl.DateTimeFormat("pt-BR").format(this.date);
     }
 }

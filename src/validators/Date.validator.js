@@ -53,9 +53,9 @@ class DateValidator {
 
     isValid() {
         if (
+            !this.isLengthValid() ||
             !this.isDayValid() ||
-            !this.isMonthValid() ||
-            !this.isLengthValid()
+            !this.isMonthValid()
         ) {
             return false;
         }
