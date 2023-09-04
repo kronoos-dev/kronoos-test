@@ -4,7 +4,7 @@ class DueAmount {
         this.numInstallments = parseInt(numInstallments);
     }
 
-    static calculate() {
+    calculate() {
         if (this.numInstallments < 1) {
             this.numInstallments = 1;
         }

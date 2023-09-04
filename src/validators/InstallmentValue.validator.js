@@ -7,7 +7,6 @@ class InstallmentValue {
     }
 
     isValid() {
-        console.log(this.installmentValue, this.calculatedInstallmentValue);
         if (this.installmentValue !== this.calculatedInstallmentValue) {
             return false;
         }
