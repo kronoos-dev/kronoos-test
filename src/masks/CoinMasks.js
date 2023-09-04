@@ -1,4 +1,4 @@
-class Masks {
+class CoinMasks {
     constructor(locale, options, value) {
         this.locale = locale;
         this.options = options;
@@ -6,12 +6,8 @@ class Masks {
     }
 
     transform() {
-        if (typeof this.value !== "number") {
-            return this.value;
-        }
-
         return Intl.NumberFormat(this.locale, this.options).format(this.value);
     }
 }
 
-export default Masks;
+export default CoinMasks;

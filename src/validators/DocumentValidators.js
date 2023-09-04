@@ -1,4 +1,4 @@
-class Validators {
+class DocumentValidators {
     constructor(value, rule) {
         this.value = value.toString();
         this.rule = rule;
@@ -6,7 +6,8 @@ class Validators {
     }
 
     sanitize() {
-        this.value = this.value.replace(/[^0-9]/g, "");
+        const regex = /[^0-9]/g;
+        this.value = this.value.replace(regex, "");
     }
 
     isLengthValid() {
@@ -17,7 +18,8 @@ class Validators {
     }
 
     isNotRepeted() {
-        if (/^(\d)\1+$/.test(this.value)) {
+        const regex = /^(\d)\1+$/;
+        if (regex.test(this.value)) {
             return false;
         }
         return true;
@@ -31,4 +33,4 @@ class Validators {
     }
 }
 
-export default Validators;
+export default DocumentValidators;

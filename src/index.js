@@ -1,9 +1,5 @@
-import ToBRL from "./masks/ToBRL.mask.js";
-import Cnpj from "./validators/Cnpjvalidator.js";
-import Cpf from "./validators/Cpf.validator.js";
+import Read from "./core/Read.js";
 
-console.log(new ToBRL(123).transform());
+const filePath = "./src/data/data.csv";
 
-console.log(new Cpf(41854274761).isValid());
-
-console.log(new Cnpj(394454624050).isValid());
+new Read(filePath);

@@ -1,8 +1,12 @@
-import Masks from "./Masks.js";
+import CoinMasks from "./CoinMasks.js";
 
-class ToBRL extends Masks {
+class ToBRL extends CoinMasks {
     constructor(value) {
-        super("pt-BR", { style: "currency", currency: "BRL" }, value);
+        super(
+            "pt-BR",
+            { style: "currency", currency: "BRL" },
+            parseFloat(value)
+        );
     }
 
     transform() {

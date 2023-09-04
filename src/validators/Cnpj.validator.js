@@ -1,6 +1,6 @@
-import Validators from "./Validators.js";
+import DocumentValidators from "./DocumentValidators.js";
 
-class Cnpj extends Validators {
+class Cnpj extends DocumentValidators {
     constructor(value) {
         super(value, 14);
     }

@@ -1,6 +1,6 @@
-import Validators from "./Validators.js";
+import DocumentValidators from "./DocumentValidators.js";
 
-class Cpf extends Validators {
+class Cpf extends DocumentValidators {
     constructor(value) {
         super(value, 11);
     }
