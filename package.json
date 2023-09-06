@@ -1,0 +1,14 @@
+{
+  "name": "kronoos-test-main",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "intl": "^1.2.5"
+  },
+  "devDependencies": {
+    "@types/intl": "^1.2.0",
+    "@types/node": "^20.5.9"
+  }
+}
