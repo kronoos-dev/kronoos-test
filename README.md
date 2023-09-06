@@ -1,27 +1,92 @@
 # Teste de vaga fullstack _KRONOOS_
 
-## Manipulação de Dados de CSV e Conversão para Array
+### Autor: [Gabriel Augusto](https://biew.dev)
 
-- Os dados são fornecidos em formato CSV.
-- Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.
+## Como usar
 
-## Conversão de Dados para Moeda Real Brasileira
+```
+npm run build
+```
 
-- Valores monetários, como `vlTotal`, `vlPresta`, `vlMora`, etc., precisam ser formatados como moeda brasileira (BRL).
-- Utilizaremos a biblioteca `intl` do JavaScript para formatar os valores numéricos como moeda BRL, incluindo o símbolo de real (R$), separador de milhar e precisão de duas casas decimais.
+ou
 
-## Validação de CPF ou CNPJ
+```
+yarn build
+```
 
-- Implementaremos uma função para validar o campo `nrCpfCnpj` e verificar se ele é um CPF ou CNPJ válido, seguindo as regras de validação apropriadas para cada formato.
+Após isso podemos executar o codigo de exemplo:
 
-## Validação de Valor Total e Prestações
+```
+yarn example
+```
 
-- Dividiremos o valor de `vlTotal` pela quantidade de prestações (`qtPrestacoes`).
-- Verificaremos se o resultado dessa divisão é igual ao valor de `vlPresta` para cada prestação, garantindo que os cálculos estejam corretos e consistentes.
+## Sobre o código
 
-## Conversão de Datas para o Tipo Date
+A funcão principal do projeto é o `getCsvData` que tem essa estrutura `getCsvData(csvFile, options)`
 
-- Os campos `dtContrato` e `dtVctPre` estão no formato `YYYYMMDD`.
-- Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
+> **csvFile** - Caminho do arquivo .csv
 
-Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+> **options** - Opções de processamento do arquivo:
+
+```typescript
+{
+    formatCurrency?: boolean;
+    syncInstallments?: boolean;
+    formatCpfCnpj?: boolean;
+}
+```
+
+## Exemplo:
+
+```typescript
+getCsvData('./data/data.csv', {
+  formatCurrency: true,
+  formatCpfCnpj: true,
+  syncInstallments: true,
+})
+  .then(csv => {
+    console.log('csv', csv);
+  })
+  .catch(error => {
+    console.log('Error', error);
+  });
+```
+
+### retorno esperado:
+
+```typescript
+[
+...
+{
+    nrInst: 31,
+    nrAgencia: 16,
+    cdClient: 28843,
+    nmClient: 'CLIENTE 20',
+    nrCpfCnpj: '792608117956',
+    nrContrato: 403261,
+    dtContrato: 2023-01-18T00:00:00.000Z,
+    qtPrestacoes: 10,
+    vlTotal: 'R$ 40.370,20',
+    cdProduto: 1276,
+    dsProduto: 'CDC PESSOA JURIDICA',
+    cdCarteira: 14,
+    dsCarteira: 'CRÉDITO DIRETO AO CONSUMIDOR',
+    nrProposta: 179643,
+    nrPresta: 8,
+    tpPresta: 'Original',
+    nrSeqPre: 0,
+    dtVctPre: 2022-04-27T00:00:00.000Z,
+    vlPresta: 'R$ 4.037,02',
+    vlMora: 'R$ 58.973,16',
+    vlMulta: 'R$ 2.450,67',
+    vlOutAcr: 'R$ 0,00',
+    vlIof: 'R$ 0,00',
+    vlDescon: 'R$ 0,00',
+    vlAtual: 'R$ 104.156,81',
+    idSituac: 'Aberta',
+    idSitVen: 'Vencida',
+    invalidCpfCnpj: true
+  },
+...
+]
+```
