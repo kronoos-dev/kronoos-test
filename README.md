@@ -1,4 +1,4 @@
-# Teste de vaga fullstack *KRONOOS*
+# Teste de vaga fullstack _KRONOOS_
 
 ## Manipulação de Dados de CSV e Conversão para Array
 
