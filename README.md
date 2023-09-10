@@ -1,27 +1,89 @@
-# Teste de vaga fullstack *KRONOOS*
+# Teste de vaga fullstack _KRONOOS_
 
-## Manipulação de Dados de CSV e Conversão para Array
+#
 
-- Os dados são fornecidos em formato CSV.
-- Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.
+## Estrutura do projeto
 
-## Conversão de Dados para Moeda Real Brasileira
+O projeto foi divido em duas partes, backend e frontend, então será necessário executar as seguintes instruções
 
-- Valores monetários, como `vlTotal`, `vlPresta`, `vlMora`, etc., precisam ser formatados como moeda brasileira (BRL).
-- Utilizaremos a biblioteca `intl` do JavaScript para formatar os valores numéricos como moeda BRL, incluindo o símbolo de real (R$), separador de milhar e precisão de duas casas decimais.
+# Instruções backend
 
-## Validação de CPF ou CNPJ
+#
 
-- Implementaremos uma função para validar o campo `nrCpfCnpj` e verificar se ele é um CPF ou CNPJ válido, seguindo as regras de validação apropriadas para cada formato.
+## 1. Instalação do projeto e execução do projeto
 
-## Validação de Valor Total e Prestações
+Abra um terminal na raiz do projeto e caminhe até a pasta backend com o seguinte comando:
 
-- Dividiremos o valor de `vlTotal` pela quantidade de prestações (`qtPrestacoes`).
-- Verificaremos se o resultado dessa divisão é igual ao valor de `vlPresta` para cada prestação, garantindo que os cálculos estejam corretos e consistentes.
+### `cd backend`
 
-## Conversão de Datas para o Tipo Date
+#
 
-- Os campos `dtContrato` e `dtVctPre` estão no formato `YYYYMMDD`.
-- Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
+Após isso, instale as dependências de acordo com o seu gerenciador de pacotes:
 
-Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+### `yarn`
+
+#
+
+ou
+
+### `npm install`
+
+#
+
+#
+
+Feito isso basta rodar o comando de execução de acordo com seu gerenciador de pacotes
+
+### `yarn start`
+
+#
+
+ou
+
+### `npm start`
+
+#
+
+Após isso o projeto estará rodando em modo de desenvolvimento com o nodemon, sendo iniciado no seguinte endereço:.
+[http://localhost:3000](http://localhost:3000).
+
+# Instruções frontend
+
+#
+
+## 1. Instalação do projeto e execução do projeto
+
+Abra um novo terminal na raiz do projeto e caminhe até a pasta frontend com o seguinte comando:
+
+### `cd frontend`
+
+#
+
+Após isso, instale as dependências de acordo com o seu gerenciador de pacotes:
+
+### `yarn`
+
+#
+
+ou
+
+### `npm install`
+
+#
+
+#
+
+Feito isso basta rodar o comando de execução de acordo com seu gerenciador de pacotes
+
+### `yarn dev`
+
+#
+
+ou
+
+### `npm dev`
+
+#
+
+O projeto estará rodando em modo de desenvolvimento.
+Abra [http://localhost:5173](http://localhost:5173) para visualizar o projeto em seu navegador.
