@@ -2,11 +2,12 @@ import CsvExtractionService from '../services/csv-extraction.service.js';
 import currencyFormatter from '../utils/currency-formatter.js';
 import toFixed from '../utils/fixed-number.js';
 import dateFormatter from '../utils/date-formatter.js';
+import { validateCPF, validateCNPJ } from '../utils/cpf-cnpj-validator.js';
 
 class CsvExtractionController {
   async execute(req, res) {
-    const offset = req.query.offset || 1;
-    const limit = req.query.limit || 5;
+    const offset = req.query.page || 1;
+    const limit = req.query.limit || 10;
 
     const startIndex = (Number(offset) - 1) * Number(limit) || 0;
 
@@ -17,33 +18,49 @@ class CsvExtractionController {
     const result = await csv_service.execute().then(data => {
       const new_array_data = [];
 
-      data.map(currentValue => {
-        new_array_data.push({
-          ...currentValue,
-          vlTotal: currencyFormatter.format(
-            toFixed(currentValue['vlTotal'], 2),
-          ),
-          vlPresta: currencyFormatter.format(
-            toFixed(currentValue['vlPresta'], 2),
-          ),
-          vlMora: currencyFormatter.format(toFixed(currentValue['vlMora'], 2)),
-          vlMulta: currencyFormatter.format(
-            toFixed(currentValue['vlMulta'], 2),
-          ),
-          vlAtual: currencyFormatter.format(
-            toFixed(currentValue['vlAtual'], 2),
-          ),
-          vlDescon: currencyFormatter.format(
-            toFixed(currentValue['vlDescon'], 2),
-          ),
-          vlIof: currencyFormatter.format(toFixed(currentValue['vlIof'], 2)),
-          vlOutAcr: currencyFormatter.format(
-            toFixed(currentValue['vlOutAcr'], 2),
-          ),
-          dtContrato: dateFormatter(currentValue['dtContrato']),
-          dtVctPre: dateFormatter(currentValue['dtVctPre']),
+      data
+        // .filter(
+        //   currentValue =>
+        //     validateCPF(currentValue.nrCpfCnpj) ||
+        //     validateCNPJ(currentValue.nrCpfCnpj),
+        // )
+        // .filter(
+        //   currentValue =>
+        //     toFixed(
+        //       toFixed(currentValue.vlTotal, 2) /
+        //         parseInt(currentValue.qtPrestacoes),
+        //       2,
+        //     ) === toFixed(currentValue.vlPresta, 2),
+        // )
+        .map(currentValue => {
+          new_array_data.push({
+            ...currentValue,
+            vlTotal: currencyFormatter.format(
+              toFixed(currentValue['vlTotal'], 2),
+            ),
+            vlPresta: currencyFormatter.format(
+              toFixed(currentValue['vlPresta'], 2),
+            ),
+            vlMora: currencyFormatter.format(
+              toFixed(currentValue['vlMora'], 2),
+            ),
+            vlMulta: currencyFormatter.format(
+              toFixed(currentValue['vlMulta'], 2),
+            ),
+            vlAtual: currencyFormatter.format(
+              toFixed(currentValue['vlAtual'], 2),
+            ),
+            vlDescon: currencyFormatter.format(
+              toFixed(currentValue['vlDescon'], 2),
+            ),
+            vlIof: currencyFormatter.format(toFixed(currentValue['vlIof'], 2)),
+            vlOutAcr: currencyFormatter.format(
+              toFixed(currentValue['vlOutAcr'], 2),
+            ),
+            dtContrato: dateFormatter(currentValue['dtContrato']),
+            dtVctPre: dateFormatter(currentValue['dtVctPre']),
+          });
         });
-      });
 
       return new_array_data;
     });
