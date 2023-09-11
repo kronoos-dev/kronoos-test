@@ -3,6 +3,6 @@ import CsvExtractionController from '../controllers/csv-extraction.controller.js
 
 const csv_routes = Router();
 
-csv_routes.post('/', CsvExtractionController.receive_file);
+csv_routes.post('/', CsvExtractionController.execute);
 
 export default csv_routes;
