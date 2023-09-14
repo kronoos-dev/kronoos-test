@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // ou "ESNext" para a versão mais recente
+    "module": "CommonJS", // Ou "ESNext" para módulos ESM
+    "outDir": "./dist", // Diretório de saída para os arquivos compilados
+    "rootDir": "./src", // Diretório onde estão os arquivos TypeScript
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noImplicitAny": true
+  },
+  "include": ["src/**/*.ts"], // Padrão de inclusão de arquivos TypeScript
+  "exclude": ["node_modules"] // Diretórios a serem excluídos da compilação
+}
