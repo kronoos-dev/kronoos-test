@@ -1,0 +1,21 @@
+{
+  "name": "kronoos-test-main",
+  "version": "1.0.0",
+  "description": "## Manipulação de Dados de CSV e Conversão para Array",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cnpj": "^4.0.3",
+    "cpf": "^2.0.1",
+    "csv-parser": "^3.0.0",
+    "date-fns": "^2.30.0",
+    "fs": "^0.0.1-security",
+    "intl": "^1.2.5"
+  }
+}
