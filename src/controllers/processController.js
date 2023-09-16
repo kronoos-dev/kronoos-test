@@ -1,6 +1,6 @@
 const service = require('../services/processService')
 
-exports.post = (req, res, next) => {
-    let response = service.processCSV(req);
-    res.status(201).send(response);
+exports.post = async (req, res, next) => {
+    let response = service.processCSV(req.body);
+    res.status(201).send(await response);
 };

@@ -33,6 +33,7 @@
     "supertest": "^6.3.3"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "csv": "^6.3.3",
     "csv-parse": "^5.5.0",
     "csv-parser": "^3.0.0",
