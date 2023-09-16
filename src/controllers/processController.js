@@ -1,3 +1,6 @@
+const service = require('../services/processService')
+
 exports.post = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+    let response = service.processCSV(req);
+    res.status(201).send(response);
 };
