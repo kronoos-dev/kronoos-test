@@ -1,3 +1,5 @@
+# Teste de vaga fullstack *KRONOOS*
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.
@@ -23,3 +25,9 @@
 - Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
 
 Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+
+## Observações
+
+- Não há nenhum valor `vlTotal` e `qtPrestacoes` que esteja correto, usando uma margem de X centavos como erro aceitáve, sendo X o número de prestações. Colocando 1 real como margem aceitável, apenas 2 entradas de dados estão corretas. Por esse motivo, no campo `vlPresta`, será apenas substituído pelo valor correto, arredondado para cima.
+
+
