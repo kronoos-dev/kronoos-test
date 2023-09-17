@@ -1,3 +1,13 @@
+# Como rodar o projeto
+-  Entrar na pasta da api e rodar projeto
+
+- `cd ./validator-api/`
+- `yarn dev`
+____
+- Entrar na pasta do app react e rodar projeto
+- `cd .\kronoos-react-app\`
+- `yarn start`
+
 # Teste de vaga fullstack *KRONOOS*
 
 ## Manipulação de Dados de CSV e Conversão para Array
