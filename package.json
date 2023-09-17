@@ -1,0 +1,26 @@
+{
+  "name": "mdrodz-kronoos",
+  "version": "1.0.0",
+  "description": "Teste de habilidade em node.js da Kronoos",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "npx tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "author": "mdrodz",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/luxon": "^3.3.2",
+    "@types/node": "^20.6.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "luxon": "^3.4.3"
+  }
+}
