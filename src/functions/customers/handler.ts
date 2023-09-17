@@ -18,12 +18,7 @@ const customers: ValidatedEventAPIGatewayProxyEvent<any> = async () => {
         else results.push(convertedData);
       })
       .on("end", () => {
-        console.log("RES: ", results?.[0]);
         resolve("");
-        // [
-        //   { NAME: 'Daffy Duck', AGE: '24' },
-        //   { NAME: 'Bugs Bunny', AGE: '22' }
-        // ]
       })
       .on("error", reject);
   });
