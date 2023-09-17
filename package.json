@@ -1,0 +1,19 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "Teste de vaga full stack Kronoos",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "author": "Marcelo Fancisco",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
