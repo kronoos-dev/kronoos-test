@@ -1,0 +1,16 @@
+export const COLLUMNS = [
+    'NRINST',     'NRAGENCIA',
+    'CDCLIENT',   'NMCLIENT',
+    'NRCPFCNPJ',  'NRCONTRATO',
+    'DTCONTRATO', 'QTPRESTACOES',
+    'VLTOTAL',    'CDPRODUTO',
+    'DSPRODUTO',  'CDCARTEIRA',
+    'DSCARTEIRA', 'NRPROPOSTA',
+    'NRPRESTA',   'TPPRESTA',
+    'NRSEQPRE',   'DTVCTPRE',
+    'VLPRESTA',   'VLMORA',
+    'VLMULTA',    'VLOUTACR',
+    'VLIOF',      'VLDESCON',
+    'VLATUAL',    'IDSITUAC',
+    'IDSITVEN'
+]
