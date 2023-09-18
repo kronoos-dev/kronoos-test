@@ -1,0 +1,16 @@
+{
+  "name": "kronoos-test",
+  "module": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  },
+  "engines": {
+    "node": "v19.4.0",
+    "npm": "9.2.0"
+  }
+}
