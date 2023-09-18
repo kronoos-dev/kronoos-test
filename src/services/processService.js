@@ -1,27 +1,41 @@
-const fs = require('fs');
-const csv = require('csv-parser')
+const helper = require('../helpers/helper')
 
 exports.processCSV = async (data) => {
     try {
-        // console.log(data.params)
-        const processFile = async () => {
-            const records = [];
-            const parser = fs
-                .createReadStream('data.csv')
-                .pipe(csv({
-                    // CSV options if any
-                }));
-            for await (const record of parser) {
-                // Work with each record
-                records.push(record);
-            }
-            return records;
-        };
-
         return await (async () => {
-            return await processFile();
+            let arr = await helper.processFile();
+            arr.forEach((obj) => {
+                //start format
+
+                //check if the vlTotal / qtPrestacoes is equal to obj.vlPresta
+                let vlC = obj.vlTotal / obj.qtPrestacoes;
+                obj.vlCorreto =
+                    vlC == obj.vlPresta
+                        ? "valor correto. - " + helper.formatCurrency(vlC)
+                        : "valor incorreto! - " + helper.formatCurrency(vlC);
+
+                //check if is a valid cpf or cnpj
+                obj.nrCpfCnpjValid = helper.validCnpjOrCpf(obj.nrCpfCnpj);
+
+                //format all vl* to intl pt-BR
+                obj.vlTotal = helper.formatCurrency(obj.vlTotal);
+                obj.vlPresta = helper.formatCurrency(obj.vlPresta);
+                obj.vlMora = helper.formatCurrency(obj.vlMora);
+                obj.vlMulta = helper.formatCurrency(obj.vlMulta);
+                obj.vlOutAcr = helper.formatCurrency(obj.vlOutAcr);
+                obj.vlIof = helper.formatCurrency(obj.vlIof);
+                obj.vlDescon = helper.formatCurrency(obj.vlDescon);
+                obj.vlAtual = helper.formatCurrency(obj.vlAtual);
+
+                // //format dates
+                obj.dtContrato = helper.formatData(obj.dtContrato);
+                obj.dtVctPre = helper.formatData(obj.dtVctPre);
+
+            });
+            return arr;
         })();
     } catch (err) {
         console.log(err);
     }
 };
+
