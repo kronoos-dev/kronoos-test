@@ -1,5 +1,13 @@
 # Teste de vaga fullstack *KRONOOS*
 
+## Como utilizar o projeto
+- `npm install`
+- `cp .env.example .env`
+- checkout docs at `{{API}}:{{PORT}}/docs/`
+- OU
+- simplesmente rode `{{API}}:{{PORT}}/process` 
+
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.
