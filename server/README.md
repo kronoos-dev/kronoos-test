@@ -1,5 +1,12 @@
 # Teste de vaga fullstack *KRONOOS*
 
+para rodar o app
+1) entrar na pasta /server `cd server`
+2) rodar o comando `npm install` depois `npm start`
+3) entrar na pasta /server `cd app`
+4) rodar o comando `npm install` depois `npm run dev`
+
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.

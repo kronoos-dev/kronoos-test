@@ -1,0 +1,7 @@
+.header {
+  margin-bottom: 16px;
+  padding: 8px 36px;
+  .logo {
+    width: 200px;
+  }
+}
