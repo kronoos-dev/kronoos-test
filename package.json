@@ -1,0 +1,31 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "- Os dados são fornecidos em formato CSV.\r - Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kronoos-dev/kronoos-test.git"
+  },
+  "jest": {
+    "testMatch": ["<rootDir>/tests/*.test.js"]
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kronoos-dev/kronoos-test/issues"
+  },
+  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme",
+  "dependencies": {
+    "cpf-cnpj-validator": "^1.0.3",
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
