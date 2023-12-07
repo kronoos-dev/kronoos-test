@@ -2,7 +2,7 @@ import { expect } from 'earl'
 import { isInstallmentValueValid } from './installment-value.validator'
 
 describe('isInstallmentValueValid', () => {
-    it('should return true for an invalid installmentValue', () => {
+    it('should return true for valid installmentValue', () => {
         const context = {
             installments: 10, 
             total: 1000, 
@@ -12,7 +12,7 @@ describe('isInstallmentValueValid', () => {
         expect(result).toEqual(true)
     })
 
-    it('should return false for an invalid installmentValue', () => {
+    it('should return false for invalid installmentValue', () => {
         const context = {
             installments: 10, 
             total: 1000, 
