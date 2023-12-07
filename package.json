@@ -1,0 +1,23 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "- Os dados são fornecidos em formato CSV.\r - Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "npx jest",
+    "start:dev": "ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.4",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  }
+}
