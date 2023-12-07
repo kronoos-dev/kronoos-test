@@ -12,7 +12,7 @@ describe('DocumentValidator', () => {
         expect(result).toEqual({ type: 'CNPJ', isValid: true, value: '26.233.791/0001-93' })
     })
 
-    it('should throw trying to validate a bad CPF/CNPJ', () => {
+    it('should return invalid for a bad CPF/CNPJ', () => {
         const result = documentValidator('45003338865')
         expect(result).toEqual({ type: 'N/A', isValid: false })
     })
