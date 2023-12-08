@@ -1,0 +1,28 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "## Manipulação de Dados de CSV e Conversão para Array",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">= 20"
+  },
+  "scripts": {
+    "start": "node dist/main.cjs",
+    "dev": "tsx main.ts",
+    "build": "tsup main.ts"
+  },
+  "keywords": [],
+  "author": "fernandes-dev",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cpf-cnpj-validator": "^1.0.3",
+    "csv-parser": "^3.0.0"
+  }
+}
