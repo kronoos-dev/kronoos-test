@@ -39,7 +39,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// main.ts
+// src/main.ts
 var import_node_fs = __toESM(require("fs"), 1);
 var import_node_path = __toESM(require("path"), 1);
 var import_csv_parser = __toESM(require("csv-parser"), 1);
@@ -71,12 +71,12 @@ function validateQtdPrest(line) {
 }
 function parseDate(date) {
   const year = Number(date.substring(0, 4));
-  const month = Number(date.substring(4, 6));
+  const month = Number(date.substring(4, 6)) - 1;
   const day = Number(date.substring(6, 8));
-  const result = new Date(year, month - 1, day);
+  const result = new Date(year, month, day);
   import_node_assert.default.ok(result instanceof Date);
   import_node_assert.default.ok(result.getDate() === day);
-  import_node_assert.default.ok(result.getMonth() === month - 1);
+  import_node_assert.default.ok(result.getMonth() === month);
   import_node_assert.default.ok(result.getFullYear() === year);
   return result;
 }
@@ -87,13 +87,15 @@ function main() {
   const result = [];
   import_node_fs.default.createReadStream(filePath).pipe(csv).on("data", (line) => {
     const nrCpfCnpjIsValid = cpfCnpjIsValid(line.nrCpfCnpj);
-    const vlTotal = convertMoney(line.vlTotal);
-    const vlPresta = convertMoney(line.vlPresta);
-    const vlMora = convertMoney(line.vlMora);
     result.push(__spreadProps(__spreadValues({}, line), {
-      vlTotal,
-      vlPresta,
-      vlMora,
+      vlTotal: convertMoney(line.vlTotal),
+      vlPresta: convertMoney(line.vlPresta),
+      vlMora: convertMoney(line.vlMora),
+      vlAtual: convertMoney(line.vlAtual),
+      vlDescon: convertMoney(line.vlDescon),
+      vlIof: convertMoney(line.vlIof),
+      vlMulta: convertMoney(line.vlMulta),
+      vlOutAcr: convertMoney(line.vlOutAcr),
       validQtPrestacoes: validateQtdPrest(line),
       nrCpfCnpj: nrCpfCnpjIsValid ? line.nrCpfCnpj : `${line.nrCpfCnpj}-INVALID`,
       dtContrato: line.dtContrato,

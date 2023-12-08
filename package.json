@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "node dist/main.cjs",
-    "dev": "tsx main.ts",
-    "build": "tsup main.ts"
+    "dev": "tsx src/main.ts",
+    "build": "tsup src/main.ts"
   },
   "keywords": [],
   "author": "fernandes-dev",
@@ -19,7 +19,8 @@
     "@types/node": "^20.10.4",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.2"
   },
   "dependencies": {
     "cpf-cnpj-validator": "^1.0.3",
