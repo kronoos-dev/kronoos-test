@@ -1,0 +1,19 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "- Os dados são fornecidos em formato CSV.\r - Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "csv": "^6.3.6",
+    "csv-parser": "^3.0.0",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}
