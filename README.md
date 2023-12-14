@@ -1,5 +1,9 @@
 # Teste de vaga fullstack *KRONOOS*
 
+# Como inciar o projeto e como funciona o projeto:
+- Se for sua primeira vez use ``npm i`` para instalar as bibliotecas necessarias.
+- Após isso basta digitar ``npm run start`` isso irá obter o arquivo data.csv dentro da pasta do projeto formatar as informações necessarias e salvar o resultado nos arquivos output.csv e output.json!
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.
