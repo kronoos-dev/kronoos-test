@@ -17,7 +17,6 @@ function convertCurrency(value) {
   return currency.format(value);
 }
 
-// Função para ler e processar o arquivo CSV
 (function () {
   const data = [];
 
