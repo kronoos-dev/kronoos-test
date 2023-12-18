@@ -25,3 +25,23 @@
 - Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
 
 Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+
+## Uso da api
+
+Para utilizar a api use os comandos a seguir:
+
+
+```sh
+# Install dependencies
+npm install
+
+# Run application
+npm run dev
+
+## Unit testing
+npm run test
+```
+
+## Autor
+
+* [Mazurco066](https://github.com/Mazurco066)
