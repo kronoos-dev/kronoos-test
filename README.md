@@ -1,4 +1,18 @@
-# Teste de vaga fullstack *KRONOOS*
+# Teste de vaga fullstack _KRONOOS_
+
+## Rodando a aplicação
+
+- Com o node instalado na máquina, acesse a pasta do projeto e rode o comando:
+
+```
+npm i
+```
+
+- Em seguida rode o comando:
+
+```
+node src/index.js
+```
 
 ## Manipulação de Dados de CSV e Conversão para Array
 
