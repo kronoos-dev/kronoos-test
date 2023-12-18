@@ -1,0 +1,6 @@
+# Node build and lib folders
+node_modules
+dist
+
+# App assets
+assets
