@@ -1,7 +1,7 @@
 global.console = {
-  log: jest.fn(),
-  error: jest.fn(),
-  warn: jest.fn(),
-  info: jest.fn(),
-  debug: jest.fn(),
+  log: jest.fn(), // Suppress console.log
+  error: jest.fn(), // Suppress console.error
+  warn: jest.fn(), // Suppress console.warn
+  info: jest.fn(), // Suppress console.info
+  debug: jest.fn(), // Suppress console.debug
 };

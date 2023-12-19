@@ -1,3 +1,6 @@
+const fs = require('fs');
+const index = require('csv-parser');
+
 /**
  * Formats a value as BRL currency.
  * @param {number} value - The value to be formatted as BRL currency.
@@ -75,7 +78,56 @@ function formatFields(row) {
   return data;
 }
 
+/**
+ * Processes a CSV file and validates CPF/CNPJ and prestação values.
+ * @param {string} filePath - The path of the CSV file to be processed.
+ * @returns {Promise<{ verified: Object[], inconsistent: Object[], invalidCpfCnpj: Object[] }>} - Promise resolving with processed data.
+ */
+function processCSV(filePath) {
+  return new Promise((resolve, reject) => {
+    const inconsistent = [];
+    const verified = [];
+    const invalidCpfCnpj = [];
+
+    fs.createReadStream(filePath)
+      .pipe(index())
+      .on('data', (row) => {
+        const rowData = formatFields(row);
+        if (!validateDocument(row.nrCpfCnpj)) {
+          invalidCpfCnpj.push(rowData)
+          return;
+        }
+
+        const valorPrestacaoCalculado = parseFloat(row.vlAtual) - parseFloat(row.vlMora) - parseFloat(row.vlMulta);
+
+        if (valorPrestacaoCalculado !== parseFloat(row.vlPresta)) {
+          inconsistent.push(rowData);
+          return;
+        }
+
+        verified.push(rowData);
+      })
+      .on('end', () => {
+        resolve({ verified, inconsistent, invalidCpfCnpj });
+      })
+      .on('error', (error) => {
+        console.log('error>>>', error)
+        reject(error);
+      });
+  });
+}
+
+const csvFilePath = 'src/data.csv';
+processCSV(csvFilePath)
+  .then(({ inconsistent, verified, invalidCpfCnpj }) => {
+    console.log({ inconsistent, verified, invalidCpfCnpj });
+  })
+  .catch((error) => {
+    console.error('Error during processing:', error);
+  });
+
 module.exports = {
+  processCSV,
   formatFields,
   validateDocument,
   formatToBRL

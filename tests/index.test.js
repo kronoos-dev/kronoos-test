@@ -1,6 +1,6 @@
 const assert = require('assert');
 const fs = require('fs/promises');
-const { validateDocument, formatToBRL, formatFields } = require('../src');
+const { validateDocument, processCSV, formatToBRL, formatFields } = require('../src');
 
 describe('Document Validation', () => {
   it('should return true for a valid CPF', () => {
@@ -99,5 +99,51 @@ describe('formatFields', () => {
     const result = formatFields(mockRow);
 
     expect(result.otherProperty).toBe(mockRow.otherProperty);
+  });
+});
+
+describe('CSV Processing', () => {
+  it('should process a valid CSV file and return verified data', async () => {
+    const testData = 'nrCpfCnpj,nrContrato,dtContrato,dtVctPre,vlAtual,vlMora,vlMulta,vlPresta\n' +
+                     '12345678909,1,20221227,20221227,100,10,5,85\n';
+
+    await fs.writeFile('tests/_mocks/test.csv', testData);
+
+    const result = await processCSV('tests/_mocks/test.csv');
+    assert.strictEqual(result.verified.length, 1);
+    assert.strictEqual(result.inconsistent.length, 0);
+    assert.strictEqual(result.verified[0].nrContrato, "1");
+  });
+
+  it('should handle inconsistent vlPresta and return inconsistent data', async () => {
+    const testData = 'nrCpfCnpj,nrContrato,dtContrato,dtVctPre,vlAtual,vlMora,vlMulta,vlPresta\n' +
+                     '12345678909,1,20220406,20220406,100,10,5,90';
+
+    await fs.writeFile('tests/_mocks/test.csv', testData);
+
+    const result = await processCSV('tests/_mocks/test.csv');
+    assert.strictEqual(result.verified.length, 0);
+    assert.strictEqual(result.inconsistent.length, 1);
+    assert.strictEqual(result.inconsistent[0].nrContrato, "1");
+  }, 6000);
+
+  it('should handle inconsistent CPF/CNPJ and return inconsistent data', async () => {
+    const testData = 'nrCpfCnpj,nrContrato,dtContrato,dtVctPre,vlAtual,vlMora,vlMulta,vlPresta\n' +
+                     'invalidCPF,1,20221227,20221227,100,10,5,85\n';
+
+    await fs.writeFile('tests/_mocks/test.csv', testData);
+
+    const result = await processCSV('tests/_mocks/test.csv');
+    assert.strictEqual(result.verified.length, 0);
+    assert.strictEqual(result.invalidCpfCnpj.length, 1);
+    assert.strictEqual(result.invalidCpfCnpj[0].nrContrato, '1');
+  });
+
+  it('should handle an empty CSV file and return an empty result', async () => {
+    await fs.writeFile('tests/_mocks/empty.csv', '');
+
+    const result = await processCSV('tests/_mocks/empty.csv');
+    assert.strictEqual(result.verified.length, 0);
+    assert.strictEqual(result.inconsistent.length, 0);
   });
 });
