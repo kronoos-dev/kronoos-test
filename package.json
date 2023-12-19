@@ -1,0 +1,19 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "repository to technical assessment, converting csv data to javascript object notation",
+  "main": "index.ts",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kronoos-dev/kronoos-test.git"
+  },
+  "author": "abilio bittencourt junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kronoos-dev/kronoos-test/issues"
+  },
+  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme"
+}
