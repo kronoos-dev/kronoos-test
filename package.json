@@ -9,7 +9,7 @@
     "dev": "nodemon src/app.ts --watch 'src/**/*.ts'",
     "build": "esbuild --bundle --platform=node --target=node20 --outdir=dist src/app.ts",
     "start": "node dist/app.js",
-    "lint": "eslint --ext .ts src"
+    "test": "jest --watch"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.1.0"
