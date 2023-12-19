@@ -1,6 +1,4 @@
-import { lerCSV } from "./process-csv-data.js";
-
-const nomeArquivo = "data.csv"; // Substitua pelo nome do seu arquivo
+import { readCSV } from "./process-csv-data.js";
 
 function formatarMoedaBRL(valor) {
   return new Intl.NumberFormat("pt-BR", {
@@ -21,15 +19,9 @@ function formatarValoresMonetarios(objeto) {
 
 // Função para percorrer e formatar os valores monetários no JSON
 async function formatarJSONComoMoeda(json) {
-  //..
   const nomeArquivo = "data.csv";
-  // Chamando a função lerCSV
-  const dadosCSV = await lerCSV(nomeArquivo);
 
-  // Manipule os dados retornados pela função
-  //console.log(dadosCSV); // Isso pode exibir "undefined" devido à natureza assíncrona da leitura do arquivo
-
-  //.
+  const dadosCSV = await readCSV(nomeArquivo);
 
   for (let i = 0; i < dadosCSV.length; i++) {
     formatarValoresMonetarios(dadosCSV[i]);

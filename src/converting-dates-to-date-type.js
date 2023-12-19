@@ -1,55 +1,53 @@
-import { lerCSV } from "./process-csv-data.js";
+import { readCSV } from "./process-csv-data.js";
 
-function converterParaData(json) {
-  json.forEach((item, index) => {
-    if (item.dtContrato && item.dtContrato.length === 8) {
-      const ano = item.dtContrato.substring(0, 4);
-      const mes = item.dtContrato.substring(4, 6);
-      const dia = item.dtContrato.substring(6, 8);
-      const dataContrato = new Date(`${ano}-${mes}-${dia}`);
-      json[index].dtContrato = dataContrato;
-    } else {
-      console.log(`Formato inválido para dtContrato na posição ${index + 1}`);
-    }
-
-    if (item.dtVctPre && item.dtVctPre.length === 8) {
-      const ano = item.dtVctPre.substring(0, 4);
-      const mes = item.dtVctPre.substring(4, 6);
-      const dia = item.dtVctPre.substring(6, 8);
-      const dataVctPre = new Date(`${ano}-${mes}-${dia}`);
-      json[index].dtVctPre = dataVctPre;
-    } else {
-      console.log(`Formato inválido para dtVctPre na posição ${index + 1}`);
-    }
-  });
-  return json;
+function converterData(dataString) {
+  if (dataString && dataString.length === 8) {
+    const ano = dataString.substring(0, 4);
+    const mes = dataString.substring(4, 6) - 1; // Mês é indexado de 0 a 11 no JavaScript
+    const dia = dataString.substring(6, 8);
+    return new Date(ano, mes, dia);
+  } else {
+    console.log("Formato de data inválido:", dataString);
+    return null;
+  }
 }
 
-// Seu JSON
-const seuJSON = [
-  {
-    nrContrato: "44358",
-    dtContrato: "20230406",
-    dtVctPre: "20230213",
-    // ... outros campos
-  },
-  {
-    // Outro objeto...
-    dtContrato: "20230415",
-    dtVctPre: "20230420",
-    // ... outros campos
-  },
-  // ... outros objetos
-];
+function formatDataBrasileira(data) {
+  if (data instanceof Date && !isNaN(data)) {
+    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+    return data.toLocaleDateString("pt-BR", options);
+  } else {
+    console.log("Data inválida:", data);
+    return null;
+  }
+}
+
+function convertDateForObjectResult(dataArray) {
+  return dataArray.map((item) => ({
+    ...item,
+    dtContrato: converterData(item.dtContrato),
+    dtVctPre: converterData(item.dtVctPre),
+  }));
+}
+
+function formatDatesBrasileiras(dataArray) {
+  return dataArray.map((item) => ({
+    ...item,
+    dtContrato: formatDataBrasileira(item.dtContrato),
+    dtVctPre: formatDataBrasileira(item.dtVctPre),
+  }));
+}
 
 async function convertingDates() {
-  const nomeArquivo = "data.csv";
+  const nameArquivo = "data.csv";
+  const dataCSV = await readCSV(nameArquivo);
+  const dataForObjectDate = convertDateForObjectResult(dataCSV);
 
-  const dadosCSV = await lerCSV(nomeArquivo);
+  const dataFormatted = formatDatesBrasileiras(dataForObjectDate);
 
-  // Convertendo para objetos Date
-  //converterParaData(seuJSON);
-  console.log("datas convertidas:", converterParaData(dadosCSV));
+  console.log(dataFormatted);
+
+  //console.log("datas convertidas:", convertToDate(dataCSV));
 }
 
 convertingDates();

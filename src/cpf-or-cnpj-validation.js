@@ -1,6 +1,6 @@
-import { lerCSV } from "./process-csv-data.js";
+import { readCSV } from "./process-csv-data.js";
 
-function validarCpfCnpj(cpfCnpj) {
+function validateCpfCnpj(cpfCnpj) {
   const cleanCpfCnpj = cpfCnpj.replace(/\D/g, ""); // Remove caracteres não numéricos
   if (cleanCpfCnpj.length === 11) {
     // CPF
@@ -75,38 +75,15 @@ function validarCpfCnpj(cpfCnpj) {
   return false;
 }
 
-// Seu JSON
-const seuJSON = [
-  {
-    nrContrato: "44358",
-    dtContrato: "20230406",
-    qtPrestacoes: "7",
-    vlTotal: "74155.17",
-    cdProduto: "332",
-    // ... outros campos
-    nrCpfCnpj: "984073507745", // Troque pelo número do CPF ou CNPJ a ser validado
-  },
-  {
-    // Outro objeto...
-    nrCpfCnpj: "62922411060", // Troque pelo número do CPF ou CNPJ a ser validado
-  },
-  // ... outros objetos
-];
-
-//..
-
 async function manipulationCpfCnpj() {
   const nomeArquivo = "data.csv";
 
-  const dadosCSV = await lerCSV(nomeArquivo);
+  const dadosCSV = await readCSV(nomeArquivo);
 
-  //..
-
-  // Validando CPFs e CNPJs no JSON
   dadosCSV.forEach((item, index) => {
-    const isValid = validarCpfCnpj(item.nrCpfCnpj);
+    const isValid = validateCpfCnpj(item.nrCpfCnpj);
     console.log(
-      `CPF/CNPJ ${item.nrCpfCnpj} é ${isValid ? "válido" : "invalido"}`
+      `CPF ou CNPJ ${item.nrCpfCnpj} é ${isValid ? "válido" : "invalido"}`
     );
   });
 }
