@@ -4,6 +4,8 @@
   "description": "repository to technical assessment, converting csv data to javascript object notation",
   "main": "index.ts",
   "scripts": {
+    "start:dev": "nodemon",
+    "build": "npx tsc -b",
     "test": "npm run test"
   },
   "repository": {
@@ -15,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/kronoos-dev/kronoos-test/issues"
   },
-  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme"
+  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
+  }
 }
