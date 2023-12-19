@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "testMatch": ["<rootDir>/**/*spec.js"]
+}
