@@ -1,4 +1,4 @@
-import { parseCSV } from "../services/parseCsv";
+import { parseCSV } from "../../services/parseCsv";
 
 describe("parseCSV", () => {
   it("should parse the CSV file and return an array of objects", async () => {
@@ -107,6 +107,6 @@ describe("parseCSV", () => {
     jest.setTimeout(10_000);
     const filePath = "./path/to/invalid/csv/file.csv";
 
-    expect(parseCSV(filePath)).rejects.toBeInstanceOf(Error);
+    expect(parseCSV(filePath)).rejects.toThrow();
   });
 });
