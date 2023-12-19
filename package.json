@@ -1,0 +1,21 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "Kronoos test",
+  "main": "index.js",
+  "repository": "https://github.com/kronoos-dev/kronoos-test.git",
+  "author": "<wilsonf.pena@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "intl": "^1.2.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0"
+  }
+}
