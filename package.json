@@ -1,0 +1,26 @@
+{
+  "name": "kronoos-test",
+  "version": "1.0.0",
+  "description": "## Manipulação de Dados de CSV e Conversão para Array",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kronoos-dev/kronoos-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kronoos-dev/kronoos-test/issues"
+  },
+  "homepage": "https://github.com/kronoos-dev/kronoos-test#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security"
+  }
+}
