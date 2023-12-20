@@ -1,0 +1,29 @@
+export interface Data {
+  cdCarteira: number;
+  cdClient: number;
+  cdProduto: number;
+  dsCarteira: string;
+  dsProduto: string;
+  dtContrato: number;
+  dtVctPre: number;
+  idSitVen: string;
+  idSituac: string;
+  nmClient: string;
+  nrAgencia: number;
+  nrContrato: number;
+  nrCpfCnpj: number;
+  nrInst: number;
+  nrPresta: number;
+  nrProposta: number;
+  nrSeqPre: number;
+  qtPrestacoes: number;
+  tpPresta: string;
+  vlAtual: number;
+  vlDescon: number;
+  vlIof: number;
+  vlMora: number;
+  vlMulta: number;
+  vlOutAcr: number;
+  vlPresta: number;
+  vlTotal: number;
+}
