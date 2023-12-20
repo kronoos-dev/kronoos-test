@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+message Contrato {
+  int32 id = 1;
+  string nrInst = 2;
+  string nrAgencia = 3;
+  string nrContrato = 4;
+  string dtContrato = 5;
+  int32 qtPrestacoes = 6;
+  int32 vlTotal = 7;
+  string nrProposta = 8;
+  string idSituac = 9;
+  string idSitVen = 10;
+  Cliente cliente = 11;
+  Produto produto = 12;
+  Carteira carteira = 13;
+  Prestacao prestacao = 14;
+}
+
+message ContratosPaginados {
+  int32 total = 1;
+  int32 lastPage = 2;
+  int32 currentPage = 3;
+  int32 perPage = 4 ;
+  int32 prev = 5;
+  int32 next = 6;
+  repeated Contrato contratos = 7;
+}
+
+message Cliente {
+  int32 id = 1;
+  string cdClient = 2;
+  string nmClient = 3;
+  string nrCpfCnpj = 4;
+}
+
+message Produto {
+  int32 id = 1;
+  string cdProduto = 2;
+  string dsProduto = 3;
+}
+
+message Carteira {
+  int32 id = 1;
+  string cdCarteira = 2;
+  string dsCarteira = 3;
+}
+
+message Prestacao {
+  int32 id = 1;
+  string nrPresta = 2;
+  string tpPresta = 3;
+  string nrSeqPre = 4;
+  string dtVctPre = 5;
+  int32 vlPresta = 6;
+  int32 vlMora = 7;
+  int32 vlMulta = 8;
+  int32 vlOutAcr = 9;
+  int32 vlIof = 10;
+  int32 vlDescon = 11;
+  int32 vlAtual = 12;
+}
+message ContratoFiltro {
+  string filter = 1;
+  int32 page = 2;
+  int32 limit = 3;
+}
+
+service ContratoService {
+  rpc FiltrarContrato (ContratoFiltro) returns (ContratosPaginados) {}
+}

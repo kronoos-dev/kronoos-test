@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id        Int        @id @default(autoincrement())
+  cdClient  String
+  nmClient  String
+  nrCpfCnpj String     @unique
+  contrato  Contrato[]
+}
+
+model Produto {
+  id        Int       @id @default(autoincrement())
+  cdProduto String
+  dsProduto String
+  contract  Contrato?
+}
+
+model Carteira {
+  id         Int       @id @default(autoincrement())
+  cdCarteira String
+  dsCarteira String
+  contrato   Contrato?
+}
+
+model Prestacao {
+  id       Int       @id @default(autoincrement())
+  nrPresta String
+  tpPresta String
+  nrSeqPre String
+  dtVctPre DateTime
+  vlPresta Int
+  vlMora   Int
+  vlMulta  Int
+  vlOutAcr Int
+  vlIof    Int
+  vlDescon Int
+  vlAtual  Int
+  contrato Contrato?
+}
+
+model Contrato {
+  id           Int       @id @default(autoincrement())
+  nrInst       String
+  nrAgencia    String
+  nrContrato   String
+  dtContrato   DateTime
+  qtPrestacoes Int
+  vlTotal      Int
+  nrProposta   String
+  idSituac     String
+  idSitVen     String
+  clienteId    Int
+  produtoId    Int       @unique
+  prestacaoId  Int       @unique
+  carteiraId   Int       @unique
+  carteira     Carteira  @relation(fields: [carteiraId], references: [id])
+  prestacao    Prestacao @relation(fields: [prestacaoId], references: [id])
+  produto      Produto   @relation(fields: [produtoId], references: [id])
+  cliente      Cliente   @relation(fields: [clienteId], references: [id])
+}
