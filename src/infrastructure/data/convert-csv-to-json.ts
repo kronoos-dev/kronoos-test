@@ -1,6 +1,6 @@
 import csv from 'csv-parser';
 import fs from 'fs';
-import { Customer } from '../../model/customer.model';
+import { Customer } from '../../domain/models/customer.model';
 
 const convertCsvToJson = async (filePath: string) => {
   const results: Customer[] = [];
