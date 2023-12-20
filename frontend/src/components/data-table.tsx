@@ -1,0 +1,208 @@
+import {
+  PaginationState,
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { Data } from "../model/Data";
+import { useMemo, useState } from "react";
+import { useQuery } from "react-query";
+
+const dataTableHelper = createColumnHelper<Data>();
+
+const defaultColumns = [
+  dataTableHelper.accessor("cdCarteira", {}),
+  dataTableHelper.accessor("cdClient", {}),
+  dataTableHelper.accessor("cdProduto", {}),
+  dataTableHelper.accessor("dsCarteira", {}),
+  dataTableHelper.accessor("dsProduto", {}),
+  dataTableHelper.accessor("dtContrato", {}),
+  dataTableHelper.accessor("dtVctPre", {}),
+  dataTableHelper.accessor("idSitVen", {}),
+  dataTableHelper.accessor("idSituac", {}),
+  dataTableHelper.accessor("nmClient", {}),
+  dataTableHelper.accessor("nrAgencia", {}),
+  dataTableHelper.accessor("nrContrato", {}),
+  dataTableHelper.accessor("nrCpfCnpj", {}),
+  dataTableHelper.accessor("nrInst", {}),
+  dataTableHelper.accessor("nrPresta", {}),
+  dataTableHelper.accessor("nrProposta", {}),
+  dataTableHelper.accessor("nrSeqPre", {}),
+  dataTableHelper.accessor("qtPrestacoes", {}),
+  dataTableHelper.accessor("tpPresta", {}),
+  dataTableHelper.accessor("vlAtual", {}),
+  dataTableHelper.accessor("vlDescon", {}),
+  dataTableHelper.accessor("vlIof", {}),
+  dataTableHelper.accessor("vlMora", {}),
+  dataTableHelper.accessor("vlMulta", {}),
+  dataTableHelper.accessor("vlOutAcr", {}),
+  dataTableHelper.accessor("vlPresta", {}),
+  dataTableHelper.accessor("vlTotal", {}),
+];
+
+export default function DataTable() {
+  const [orderBy] = useState<string>("id");
+  const [order] = useState<string>("ASC");
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 50,
+  });
+
+  const fetchDataOptions = {
+    page: pageIndex,
+    pageSize,
+    orderBy,
+    order,
+  };
+
+  const query = useQuery({
+    queryKey: ["data", fetchDataOptions],
+    queryFn: async () => {
+      const result = await fetch(
+        `http://localhost:8080/data?page=${fetchDataOptions.page}&pageSize=${fetchDataOptions.pageSize}&orderBy=${fetchDataOptions.orderBy}&order=${fetchDataOptions.order}`,
+      );
+      const data = await result.json();
+      return data;
+    },
+  });
+
+  const defaultData = useMemo(() => [], []);
+
+  const pagination = useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize],
+  );
+
+  const table = useReactTable({
+    data: query.data?.rows ?? defaultData,
+    columns: defaultColumns,
+    pageCount: query.data?.pageCount ?? -1,
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    manualPagination: true,
+    debugTable: true,
+  });
+
+  return (
+    <div className="flex h-full w-full flex-col gap-2 overflow-hidden">
+      <div className="h-full w-full overflow-auto">
+        <table>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className="p-2 text-start text-sm opacity-60"
+                    >
+                      {header.isPlaceholder ? null : (
+                        <div>
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                        </div>
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id} className="even:bg-black/5">
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td key={cell.id} className="whitespace-nowrap p-2">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div className="">
+        <div className="flex items-center gap-2">
+          <button
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
+            {"<<"}
+          </button>
+          <button
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+          <button
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            {">"}
+          </button>
+          <button
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          >
+            {">>"}
+          </button>
+          <span className="flex items-center gap-1">
+            <div>Página</div>
+            <strong>
+              {table.getState().pagination.pageIndex + 1} de{" "}
+              {table.getPageCount()}
+            </strong>
+          </span>
+          <span className="flex items-center justify-center gap-2 p-2">
+            | Ir para a página
+            <input
+              type="number"
+              defaultValue={table.getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                table.setPageIndex(page);
+              }}
+              className="w-16 rounded border px-1 pb-0.5"
+            />
+          </span>
+          <select
+            className="rounded border px-1 pb-0.5"
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => {
+              table.setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 50, 100, 200].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Mostrar {pageSize}
+              </option>
+            ))}
+          </select>
+          {query.isFetching && <span>Carregando...</span>}
+        </div>
+      </div>
+    </div>
+  );
+}

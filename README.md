@@ -1,27 +1,48 @@
-# Teste de vaga fullstack *KRONOOS*
+# Teste de vaga fullstack _KRONOOS_
 
-## Manipulação de Dados de CSV e Conversão para Array
+## Candidato: Samuel Morrissey
 
-- Os dados são fornecidos em formato CSV.
-- Utilizaremos a biblioteca `fs` (File System) para ler o arquivo CSV e a biblioteca `csv-parser` para processar os dados e convertê-los em um array de objetos JavaScript.
+## Instruções
 
-## Conversão de Dados para Moeda Real Brasileira
+### Pré-requisitos
 
-- Valores monetários, como `vlTotal`, `vlPresta`, `vlMora`, etc., precisam ser formatados como moeda brasileira (BRL).
-- Utilizaremos a biblioteca `intl` do JavaScript para formatar os valores numéricos como moeda BRL, incluindo o símbolo de real (R$), separador de milhar e precisão de duas casas decimais.
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
-## Validação de CPF ou CNPJ
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
 
-- Implementaremos uma função para validar o campo `nrCpfCnpj` e verificar se ele é um CPF ou CNPJ válido, seguindo as regras de validação apropriadas para cada formato.
+Além disso, é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-## Validação de Valor Total e Prestações
+Com isso, faça um clone deste repositório:
 
-- Dividiremos o valor de `vlTotal` pela quantidade de prestações (`qtPrestacoes`).
-- Verificaremos se o resultado dessa divisão é igual ao valor de `vlPresta` para cada prestação, garantindo que os cálculos estejam corretos e consistentes.
+```bash
+git clone [<url-do-repositorio>](https://github.com/morrisseybr/kronoos-test.git)
 
-## Conversão de Datas para o Tipo Date
+cd kronoos-test
+```
 
-- Os campos `dtContrato` e `dtVctPre` estão no formato `YYYYMMDD`.
-- Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
+### 🎲 Rodando o projeto
 
-Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+Para usar o projeto, recomendo rodar o back-end e o front-end em terminais separados, para isso, siga os passos abaixo:
+
+#### Back-end
+
+```bash
+# Acesse a pasta do projeto no terminal/cmd
+cd backend
+npm install
+npm run dev
+```
+
+#### Front-end
+
+```bash
+# Acesse a pasta do projeto no terminal/cmd
+cd frontend
+npm install
+npm run dev
+```
+
+Com isso, o projeto estará rodando em http://localhost:3000
+
+Há a possibilidade também de rodar somente o back e utilizar a api para receber os dados da tabela. A api estará disponível na porta 8080.
