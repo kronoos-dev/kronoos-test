@@ -80,8 +80,12 @@ export class SqliteDatabase implements Database {
     pageSize: number;
     orderBy: string;
     order: "ASC" | "DESC";
-  }): Promise<Data[]> {
+  }): Promise<{ rows: Data[]; pageCount: number }> {
     return new Promise((resolve, reject) => {
+      const result = {
+        rows: [] as Data[],
+        pageCount: 0,
+      };
       const { page, pageSize, orderBy, order } = params;
       const offset = (page - 1) * pageSize;
       const query = `SELECT * FROM data ORDER BY ${orderBy} ${order} LIMIT ${pageSize} OFFSET ${offset}`;
@@ -90,7 +94,17 @@ export class SqliteDatabase implements Database {
         if (err) {
           reject(err);
         }
-        resolve(rows as Data[]);
+        result.rows = rows as Data[];
+      });
+
+      this.dbConnection.get("SELECT COUNT(*) FROM data", (err, count) => {
+        if (err) {
+          reject(err);
+        }
+        result.pageCount = Math.ceil(
+          ((count as any)["COUNT(*)"] as number) / pageSize,
+        );
+        resolve(result);
       });
     });
   }

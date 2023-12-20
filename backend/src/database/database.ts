@@ -6,6 +6,6 @@ export interface Database {
     pageSize: number;
     orderBy: string;
     order: "ASC" | "DESC";
-  }): Promise<Data[]>;
+  }): Promise<{ rows: Data[]; pageCount: number }>;
   insertData(data: Data): Promise<void>;
 }

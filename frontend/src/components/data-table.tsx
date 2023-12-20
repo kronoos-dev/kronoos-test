@@ -79,7 +79,7 @@ export default function DataTable() {
   );
 
   const table = useReactTable({
-    data: query.data ?? defaultData,
+    data: query.data?.rows ?? defaultData,
     columns: defaultColumns,
     pageCount: query.data?.pageCount ?? -1,
     state: {
@@ -88,7 +88,6 @@ export default function DataTable() {
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-    // getPaginationRowModel: getPaginationRowModel(), // If only doing manual pagination, you don't need this
     debugTable: true,
   });
 
