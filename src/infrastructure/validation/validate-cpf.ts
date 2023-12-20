@@ -1,4 +1,4 @@
-const validadeCPF = (cpf: string) => {
+const validateCPF = (cpf: string) => {
     cpf = cpf.replace(/[^\d]/g, '');
 
     if (cpf.length !== 11) {
@@ -34,4 +34,4 @@ const validadeCPF = (cpf: string) => {
     return true;
 }
 
-export default CPFValidation
+export default validateCPF
