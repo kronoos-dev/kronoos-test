@@ -1,5 +1,14 @@
 # Teste de vaga fullstack *KRONOOS*
 
+## Solução (Jefferson): ##
+ - Para a solução do problema foi utilizado o NodeJS, com as bibliotecas fs, csv-parser, express e intl.
+ - Foi desenvolvida uma API aonde o usuário faz o upload de um csv para ser validado.
+ - Com o postman basta utilizar o método POST na rota http://localhost:4000/csv/read, selecionar o arquivo csv e enviar.
+NA KEY do postman deve ser utilizado o nome "file".
+ - As validações deverão aparecer conforme o esperando.
+ - Alguns uploads são feitos na pasta uploads, para testes.
+
+
 ## Manipulação de Dados de CSV e Conversão para Array
 
 - Os dados são fornecidos em formato CSV.
@@ -25,3 +34,6 @@
 - Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
 
 Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+
+
+
