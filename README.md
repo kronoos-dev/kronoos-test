@@ -25,3 +25,9 @@
 - Utilizaremos o JavaScript para converter esses campos em objetos do tipo `Date`, permitindo manipulações e formatações mais adequadas.
 
 Certifique-se de testar cada etapa do processo para garantir que os dados sejam manipulados, convertidos e validados corretamente de acordo com os cenários especificados.
+
+## Para logar e testar a tela por favor usar
+http://localhost:3000/api-docs/
+
+Foi criada uma API para rodar o CSV e fazer as validações
+

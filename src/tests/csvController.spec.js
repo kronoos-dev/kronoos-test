@@ -1,20 +1,28 @@
-// tests/csvController.spec.js
-describe('csvController', () => {
-    const csvController = require('../src/controllers/csvController');
-  
-    it('should process CSV file', async () => {
-      const req = { file: { path: 'path/to/test.csv' } };
-      const res = {
-        status: (code) => ({ json: (data) => ({ code, data }) }),
-        json: (data) => ({ data }),
-      };
-  
-      spyOn(csvService, 'readCSV').and.returnValue(/* your mock data */);
-  
-      await csvController.processCSV(req, res);
-      
-      expect(csvService.readCSV).toHaveBeenCalledWith(req.file.path);
-      // Add more expectations based on your implementation
-    });
+// csvController.spec.js
+
+const { csvToJson } = require('./src/interfaces/controllers/csvController');
+
+describe('CSV Controller', function () {
+  it('should handle CSV upload and conversion', async function () {
+    // Mock request and response objects
+    const req = {
+      file: {
+        path: 'data.csv',  // Provide a sample CSV file path for testing
+        buffer: ''/* Provide a sample buffer here if needed */
+      },
+    };
+    const res = {
+      json: jasmine.createSpy('json'),
+      status: jasmine.createSpy('status').and.returnValue({ json: jasmine.createSpy('json') }),
+    };
+
+    // Call the controller function
+    await csvToJson(req, res);
+
+    // Assertions
+    expect(res.status).toHaveBeenCalledWith(200);
+    // Add more assertions based on the expected behavior
   });
-  
+
+  // Add more test cases for error scenarios, invalid CSV files, etc.
+});
