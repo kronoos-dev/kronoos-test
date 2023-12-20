@@ -1,20 +1,21 @@
-import csv from 'csv-parser'
-import fs from 'fs'
-import getFileDirectoryFromRoot from '../files/get-file-directory-from-root'
+import csv from 'csv-parser';
+import fs from 'fs';
 import { Customer } from '../../model/customer.model';
 
-const convertCsvToJson = async () => {
-    const filePath = getFileDirectoryFromRoot('data.csv');
-    const results: Customer[] = [];
-    fs.createReadStream(filePath)
-        .pipe(csv())
-        .on('data', (data) => {
-            results.push(data)
-        })
-        .on("end", () => {
-            const json = JSON.stringify(results, null, 2);
-            fs.writeFileSync("./data.json", json, "utf-8");
-        });
-}
+const convertCsvToJson = async (filePath: string) => {
+  const results: Customer[] = [];
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on('data', (data) => {
+      results.push(data);
+    })
+    .on('end', () => {
+      const json = JSON.stringify(results, null, 2);
+      fs.writeFileSync('./data.json', json, 'utf-8');
+    })
+    .on('error', (error) => {
+      console.log(error);
+    });
+};
 
-export default convertCsvToJson
+export default convertCsvToJson;
