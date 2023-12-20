@@ -45,4 +45,4 @@ npm run dev
 
 Com isso, o projeto estará rodando em http://localhost:3000
 
-Há a possibilidade também de rodar somente o back e utilizar a api para receber os dados da tabela.
+Há a possibilidade também de rodar somente o back e utilizar a api para receber os dados da tabela. A api estará disponível na porta 8080.
