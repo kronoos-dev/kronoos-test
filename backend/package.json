@@ -6,7 +6,7 @@
   "author": "Samuel Morrissey <samuel.morrissey@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/app.ts --watch 'src/**/*.ts'",
+    "dev": "nodemon src/app.ts --watch src/**/*.ts",
     "build": "esbuild --bundle --platform=node --target=node20 --outdir=dist src/app.ts",
     "start": "node dist/app.js",
     "test": "jest --watch"
@@ -34,6 +34,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.1.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "zod": "^3.22.4"
   }
 }

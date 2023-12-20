@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { SqliteDatabase } from "./database/sqliteDatabase";
 import { parseCSV } from "./services/parseCsv";
 import { Data } from "./model/Data";
+import dataRouter from "./routes/getData";
 
 dotenv.config();
 
@@ -12,16 +13,22 @@ async function initApp() {
   console.log("Lendo arquivo CSV...");
   const csvData = await parseCSV("./src/data/data.csv");
   console.log("Iniciando banco de dados...");
-  const db = new SqliteDatabase();
+  const db = await SqliteDatabase.getInstance();
   console.log("Inserindo dados no banco...");
-  csvData.forEach(async (data) => {
-    await db.insertData(data as Data);
-  });
+
+  await Promise.all(
+    csvData.map(async (data) => {
+      await db.insertData(data as Data);
+    }),
+  );
+
   console.log("Iniciando servidor...");
   const app = express();
 
   app.use(cors());
   app.use(helmet());
+
+  app.use("/data", dataRouter);
   app.listen(process.env.SERVER_PORT, () => {
     console.log(`Servidor iniciado na porta ${process.env.SERVER_PORT}`);
   });

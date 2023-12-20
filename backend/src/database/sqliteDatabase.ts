@@ -3,53 +3,90 @@ import { Database } from "./database";
 import { Data } from "../model/Data";
 
 export class SqliteDatabase implements Database {
-  dbConnection: sqlite3.Database;
+  private static instance: SqliteDatabase;
+  private dbConnection: sqlite3.Database;
 
-  constructor() {
-    this.dbConnection = this.initDb();
+  private constructor(dbConnection: sqlite3.Database) {
+    this.dbConnection = dbConnection;
   }
 
-  initDb() {
-    const db = new sqlite3.Database(":memory:");
-    db.run(`
-      CREATE TABLE IF NOT EXISTS data (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        cdCarteira INTEGER,
-        cdClient INTEGER,
-        cdProduto INTEGER,
-        dsCarteira TEXT,
-        dsProduto TEXT,
-        dtContrato INTEGER,
-        dtVctPre INTEGER,
-        idSitVen TEXT,
-        idSituac TEXT,
-        nmClient TEXT,
-        nrAgencia INTEGER,
-        nrContrato INTEGER,
-        nrCpfCnpj INTEGER,
-        nrInst INTEGER,
-        nrPresta INTEGER,
-        nrProposta INTEGER,
-        nrSeqPre INTEGER,
-        qtPrestacoes INTEGER,
-        tpPresta TEXT,
-        vlAtual REAL,
-        vlDescon REAL,
-        vlIof REAL,
-        vlMora REAL,
-        vlMulta REAL,
-        vlOutAcr REAL,
-        vlPresta REAL,
-        vlTotal REAL
-      )
-    `);
-
-    return db;
+  public static async getInstance(): Promise<SqliteDatabase> {
+    if (!SqliteDatabase.instance) {
+      const dbConnection = await this.initDb();
+      SqliteDatabase.instance = new SqliteDatabase(dbConnection);
+    }
+    return SqliteDatabase.instance;
   }
 
-  getData(): Promise<Data[]> {
+  private static initDb(): Promise<sqlite3.Database> {
     return new Promise((resolve, reject) => {
-      this.dbConnection.all("SELECT * FROM data", (err, rows) => {
+      const db = new sqlite3.Database(":memory:", (err) => {
+        if (err) {
+          reject(err);
+        }
+        this.createTable(db).then(() => {
+          resolve(db);
+        });
+      });
+    });
+  }
+
+  private static createTable(db: sqlite3.Database): Promise<void> {
+    return new Promise((resolve, reject) => {
+      db.run(
+        `
+      CREATE TABLE IF NOT EXISTS data (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      cdCarteira INTEGER,
+      cdClient INTEGER,
+      cdProduto INTEGER,
+      dsCarteira TEXT,
+      dsProduto TEXT,
+      dtContrato INTEGER,
+      dtVctPre INTEGER,
+      idSitVen TEXT,
+      idSituac TEXT,
+      nmClient TEXT,
+      nrAgencia INTEGER,
+      nrContrato INTEGER,
+      nrCpfCnpj INTEGER,
+      nrInst INTEGER,
+      nrPresta INTEGER,
+      nrProposta INTEGER,
+      nrSeqPre INTEGER,
+      qtPrestacoes INTEGER,
+      tpPresta TEXT,
+      vlAtual REAL,
+      vlDescon REAL,
+      vlIof REAL,
+      vlMora REAL,
+      vlMulta REAL,
+      vlOutAcr REAL,
+      vlPresta REAL,
+      vlTotal REAL
+      )`,
+        (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        },
+      );
+    });
+  }
+
+  public getData(params: {
+    page: number;
+    pageSize: number;
+    orderBy: string;
+    order: "ASC" | "DESC";
+  }): Promise<Data[]> {
+    return new Promise((resolve, reject) => {
+      const { page, pageSize, orderBy, order } = params;
+      const offset = (page - 1) * pageSize;
+      const query = `SELECT * FROM data ORDER BY ${orderBy} ${order} LIMIT ${pageSize} OFFSET ${offset}`;
+
+      this.dbConnection.all(query, (err, rows) => {
         if (err) {
           reject(err);
         }
@@ -57,7 +94,8 @@ export class SqliteDatabase implements Database {
       });
     });
   }
-  insertData(data: Data): Promise<void> {
+
+  public insertData(data: Data): Promise<void> {
     return new Promise((resolve, reject) => {
       this.dbConnection.run(
         `INSERT INTO data (
