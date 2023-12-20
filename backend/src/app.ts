@@ -29,8 +29,10 @@ async function initApp() {
   app.use(helmet());
 
   app.use("/data", dataRouter);
-  app.listen(process.env.SERVER_PORT, () => {
-    console.log(`Servidor iniciado na porta ${process.env.SERVER_PORT}`);
+  app.listen(process.env.SERVER_PORT || 8080, () => {
+    console.log(
+      `Servidor iniciado na porta ${process.env.SERVER_PORT || 8080}`,
+    );
   });
 }
 

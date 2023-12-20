@@ -46,7 +46,7 @@ export default function DataTable() {
   const [order] = useState<string>("ASC");
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 50,
   });
 
   const fetchDataOptions = {
@@ -121,7 +121,7 @@ export default function DataTable() {
           <tbody>
             {table.getRowModel().rows.map((row) => {
               return (
-                <tr key={row.id}>
+                <tr key={row.id} className="even:bg-black/5">
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td key={cell.id} className="whitespace-nowrap p-2">
@@ -141,42 +141,42 @@ export default function DataTable() {
       <div className="">
         <div className="flex items-center gap-2">
           <button
-            className="rounded border p-1"
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
             {"<<"}
           </button>
           <button
-            className="rounded border p-1"
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
           <button
-            className="rounded border p-1"
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
             {">"}
           </button>
           <button
-            className="rounded border p-1"
+            className="rounded p-2 pb-3 text-center hover:bg-black/5 disabled:opacity-50"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
             {">>"}
           </button>
           <span className="flex items-center gap-1">
-            <div>Page</div>
+            <div>Página</div>
             <strong>
-              {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getState().pagination.pageIndex + 1} de{" "}
               {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1">
-            | Go to page:
+          <span className="flex items-center justify-center gap-2 p-2">
+            | Ir para a página
             <input
               type="number"
               defaultValue={table.getState().pagination.pageIndex + 1}
@@ -184,22 +184,23 @@ export default function DataTable() {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0;
                 table.setPageIndex(page);
               }}
-              className="w-16 rounded border p-1"
+              className="w-16 rounded border px-1 pb-0.5"
             />
           </span>
           <select
+            className="rounded border px-1 pb-0.5"
             value={table.getState().pagination.pageSize}
             onChange={(e) => {
               table.setPageSize(Number(e.target.value));
             }}
           >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
+            {[10, 50, 100, 200].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
-                Show {pageSize}
+                Mostrar {pageSize}
               </option>
             ))}
           </select>
-          {query.isFetching ? "Loading..." : null}
+          {query.isFetching && <span>Carregando...</span>}
         </div>
       </div>
     </div>
