@@ -1,5 +1,5 @@
-export function validateCpfCnpj(input: string): boolean {
-  const cleanInput = input.replace(/[^\d]+/g, "");
+export function validateCpfCnpj(input: string | number): boolean {
+  const cleanInput = input.toString().replace(/[^\d]+/g, "");
   const cpfRegex = /^\d{11}$/;
   const cnpjRegex = /^\d{14}$/;
 

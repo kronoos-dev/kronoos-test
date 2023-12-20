@@ -1,4 +1,4 @@
-import { validateCpfCnpj } from "../../validation/cpfCnpjValidation";
+import { validateCpfCnpj } from "../../services/cpfCnpjValidation";
 
 describe("validateCpfCnpj", () => {
   const validCpfs = [

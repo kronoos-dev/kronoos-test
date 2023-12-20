@@ -1,4 +1,4 @@
-import { formatCurrency } from "../../utils/formatCurrency";
+import { formatCurrency } from "../../services/formatCurrency";
 
 describe("formatCurrency", () => {
   const values = [

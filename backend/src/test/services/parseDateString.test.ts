@@ -1,4 +1,4 @@
-import { parseDateString } from "../../utils/parseDateString";
+import { parseDateString } from "../../services/parseDateString";
 
 describe("parseDateString", () => {
   it("should parse a valid date string", () => {

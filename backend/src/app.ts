@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import { SqliteDatabase } from "./database/sqliteDatabase";
-import { parseCSV } from "./services/parseCsv";
+import services from "./services";
 import { Data } from "./model/Data";
 import dataRouter from "./routes/getData";
 
@@ -11,7 +11,7 @@ dotenv.config();
 
 async function initApp() {
   console.log("Lendo arquivo CSV...");
-  const csvData = await parseCSV("./src/data/data.csv");
+  const csvData = await services.parseCSV("./src/data/data.csv");
   console.log("Iniciando banco de dados...");
   const db = await SqliteDatabase.getInstance();
   console.log("Inserindo dados no banco...");
