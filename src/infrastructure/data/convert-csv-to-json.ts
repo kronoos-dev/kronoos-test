@@ -1,13 +1,14 @@
 import csv from 'csv-parser';
 import fs from 'fs';
-import { Customer } from '../../domain/models/customer.model';
+import CustomerDto from '../../presentation/dtos/customer.dto';
+import convertCsvRowToObject from './convert-csv-row-to-object';
 
 const convertCsvToJson = async (filePath: string) => {
-  const results: Customer[] = [];
+  const results: CustomerDto[] = [];
   fs.createReadStream(filePath)
     .pipe(csv())
     .on('data', (data) => {
-      results.push(data);
+      results.push(convertCsvRowToObject(data));
     })
     .on('end', () => {
       const json = JSON.stringify(results, null, 2);
